@@ -21,6 +21,35 @@
                            class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                 </form>
             </div>
+            <div class="container mx-auto p-6">
+                <h1 class="text-2xl font-bold mb-6">URL List</h1>
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                  <thead>
+                    <tr>
+                      <th class="py-2 px-4 border-b">UUID</th>
+                      <th class="py-2 px-4 border-b">Link</th>
+                      <th class="py-2 px-4 border-b">Visit_count</th>
+                      <th class="py-2 px-4 border-b">Expire Date</th>
+                      <th class="py-2 px-4 border-b">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for url in urls %}
+                      <tr>
+                        <td class="py-2 px-4 border-b">{{ url.uuid }}</td>
+                        <td class="py-2 px-4 border-b">{{ url.link }}</td>
+                        <td class="py-2 px-4 border-b">{{ url.visit_count }}
+                        <td class="py-2 px-4 border-b">{{ url.expire_date }}
+                        <td class="py-2 px-4 border-b">
+                          <a href="{% url 'url_edit' url.uuid %}" class="text-blue-500 hover:underline">Edit</a>
+                          |
+                          <a href="{% url 'url_delete' url.uuid %}" class="text-red-500 hover:underline">Delete</a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
         </div>
     </section>
 {% endblock content %}
